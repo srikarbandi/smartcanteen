@@ -9,7 +9,7 @@ view + indexes). Additions for the application are called out in §2.6.
 erDiagram
     USERS ||--o{ USER_PHONE : "has"
     USERS ||--o{ ORDERS : "places"
-    USERS ||--o{ CANTEEN : "manages (vendor)"
+    USERS ||--o{ CANTEEN : "manages as vendor"
     CANTEEN ||--o{ FOOD_ITEM : "offers"
     CANTEEN ||--o{ PICKUP_SLOT : "schedules"
     CANTEEN ||--o{ ORDERS : "receives"
@@ -28,7 +28,7 @@ erDiagram
         timestamp created_at
     }
     USER_PHONE {
-        int user_id PK,FK
+        int user_id PK "FK to users"
         varchar phone_number PK
     }
     CANTEEN {
@@ -79,7 +79,7 @@ erDiagram
     }
     INVENTORY {
         int inventory_id PK
-        int food_id FK,UK
+        int food_id FK "unique"
         int quantity_available
         timestamp last_updated
     }
