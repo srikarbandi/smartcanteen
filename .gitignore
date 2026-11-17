@@ -36,5 +36,9 @@ yarn-error.log*
 /team_contributions/*.zip
 # demo/viva prep — kept locally, not published to the repo
 /docs/07_demo_and_viva.md
+
+# reference inputs (assignment brief + source photo) — kept locally, not deliverables
+/DBMS Level 3 Project Requirements draft.docx
+/IMG_8060.HEIC
 # Soha's handover mirror duplicates main source; keep only her package docs in git
 /team_contributions/soha_rafiq/files/
