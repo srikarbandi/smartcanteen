@@ -1,0 +1,24 @@
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/auth";
+import { NavBar } from "@/components/NavBar";
+
+export default function VendorLayout({ children }: { children: React.ReactNode }) {
+  const user = getSession();
+  if (!user) redirect("/login");
+  if (user.role !== "VENDOR") redirect("/student");
+
+  return (
+    <div className="min-h-screen bg-grain">
+      <NavBar
+        name={user.name}
+        links={[
+          { href: "/vendor", label: "Dashboard" },
+          { href: "/vendor/orders", label: "Orders" },
+          { href: "/vendor/menu", label: "Menu & stock" },
+          { href: "/vendor/feedback", label: "Feedback" },
+        ]}
+      />
+      <main className="mx-auto max-w-6xl px-5 py-7">{children}</main>
+    </div>
+  );
+}
