@@ -31,11 +31,12 @@ function runSql({ sql, file, asAdmin = true, useDb = false }) {
 function esc(s) { return String(s).replace(/'/g, "''"); }
 
 try {
-  console.log("1/4  Creating database + app user (as admin)…");
+  console.log("1/4  Creating a fresh database + app user (as admin)…");
   runSql({
     asAdmin: true,
     sql: `
-      CREATE DATABASE IF NOT EXISTS \`${c.db}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      DROP DATABASE IF EXISTS \`${c.db}\`;
+      CREATE DATABASE \`${c.db}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
       CREATE USER IF NOT EXISTS '${esc(c.appUser)}'@'localhost' IDENTIFIED BY '${esc(c.appPass)}';
       CREATE USER IF NOT EXISTS '${esc(c.appUser)}'@'127.0.0.1' IDENTIFIED BY '${esc(c.appPass)}';
       GRANT ALL PRIVILEGES ON \`${c.db}\`.* TO '${esc(c.appUser)}'@'localhost';
